@@ -9,7 +9,7 @@ class initialize_transformer():
         'k', 'j', 'q', 'x', 'z', 'c', 's', 'y', 'w']
         self.syllab_end = ['a', 'e', 'i', 'o', 'u', 'ü', 'ng', 'g', 'n', 'r']
         self.punctuation_mark = ['.', '?', '!', ':', ';', '-', '[', ']',\
-             '{', '}', '(', ')', '‘', '“', ' ', '\n']
+             '{', '}', '(', ')', '‘', '“', ' ', '\n', ',']
 
         # Defining all the possible tones
         self.tones = ['ā', 'ē', 'ī', 'ō', 'ū', \
