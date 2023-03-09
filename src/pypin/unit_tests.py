@@ -10,6 +10,7 @@ class TestTransformer(unittest.TestCase):
         transformed_string = transformer_object.to_numbers(orig_string)
         try:
             self.assertEqual(correct_transformation, transformed_string)
+            print("Text no.1 passed.")
         except:
             print("TEST NO. 1 FAILED")
             print(f"Original version: {correct_transformation}\n")
@@ -21,6 +22,7 @@ class TestTransformer(unittest.TestCase):
         transformed_string = transformer_object.to_numbers(orig_string)
         try:
             self.assertEqual(correct_transformation, transformed_string)
+            print("Text no.2 passed.")
         except:
             print("TEST NO. 2 FAILED")
             print(f"Original version: {correct_transformation}\n")

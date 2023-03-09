@@ -14,13 +14,9 @@ class string_transformer():
             'ǖ', 'á', 'é', 'í', 'ó', 'ú', 'ǘ', 'ǎ',\
                 'ě', 'ǐ', 'ǒ', 'ǔ', 'ǚ', 'à', 'è', 'ì', 'ò', 'ù', 'ǜ']
         
-        
-    def to_numbers(self, text: str):
-        assert isinstance(text, str), "Wrong argument passed to the class constructor."
-        self.text = text
         # Initializing regex object.
         self.tones_regex = re.compile('ā|ē|ī|ō|ū|ǖ|á|é|í|ó|ú|ǘ|ǎ|ě|ǐ|ǒ|ǔ|ǚ|à|è|ì|ò|ù|ǜ')
-        
+
         # Declaring a mapping of each tone to corresponding letter that should be inserted.
         self.tone_letter_mapping = {
             tone_letter : letter 
@@ -34,8 +30,11 @@ class string_transformer():
         self.tones_to_numbers = {tone : number 
             for tone, number in zip(self.tones, tone_numbers)
         }
-        print(self.tones_to_numbers)
-
+        
+    def to_numbers(self, text: str):
+        assert isinstance(text, str), "Wrong argument passed to the class constructor."
+        self.text = text
+        
         while True:
             match = re.search(self.tones_regex, self.text)
             if match:
@@ -71,13 +70,3 @@ class string_transformer():
                 break
     
         return self.text
-            
-
-
-
-
-#test = initialize_transformer("""Xǔduō zài zhōngguó yìnshuā de shūjí shǐyòng hùnhé zìtǐ, 
-                                #yuán yīn hé shēngdiào biāojì yǐ yǔ zhōuwéi wénběn bùtóng de zìtǐ chéngxiàn, 
-                                #wǎngwǎng shǐ cǐ lèi pīnyīn wénběn zài yìnshuā shàng xiǎndé bènzhuō.""")
-#new_text = test.to_numbers()
-#print(new_text)
