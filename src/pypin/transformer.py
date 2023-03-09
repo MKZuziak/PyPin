@@ -1,13 +1,11 @@
 import re
 
-class initialize_transformer():
-    def __init__(self, text: str) -> None:
-        assert isinstance(text, str), "Wrong argument passed to the class constructor."
-        self.text = text
+class string_transformer():
+    def __init__(self) -> None:
         # Defining all possible ends of a syllab - by punctuation mark or a letter.
         self.syllab_beginning = ['b', 'p', 'm', 'f', 'd', 't', 'l',\
         'k', 'j', 'q', 'x', 'z', 'c', 's', 'y', 'w']
-        self.syllab_end = ['a', 'e', 'i', 'o', 'u', 'ü', 'ng', 'g', 'n', 'r']
+        self.syllab_end = ['a', 'e', 'i', 'o', 'u', 'ü', 'g', 'n', 'r']
         self.punctuation_mark = ['.', '?', '!', ':', ';', '-', '[', ']',\
              '{', '}', '(', ')', '‘', '“', ' ', '\n', ',']
 
@@ -16,7 +14,10 @@ class initialize_transformer():
             'ǖ', 'á', 'é', 'í', 'ó', 'ú', 'ǘ', 'ǎ',\
                 'ě', 'ǐ', 'ǒ', 'ǔ', 'ǚ', 'à', 'è', 'ì', 'ò', 'ù', 'ǜ']
         
-    def to_numbers(self):        
+        
+    def to_numbers(self, text: str):
+        assert isinstance(text, str), "Wrong argument passed to the class constructor."
+        self.text = text
         # Initializing regex object.
         self.tones_regex = re.compile('ā|ē|ī|ō|ū|ǖ|á|é|í|ó|ú|ǘ|ǎ|ě|ǐ|ǒ|ǔ|ǚ|à|è|ì|ò|ù|ǜ')
         
@@ -49,9 +50,14 @@ class initialize_transformer():
                         shifting_index += 1
                         security_counter += 1
                 if self.text[shifting_index] in self.syllab_end:
-                    self.text = self.text[:shifting_index + 1] + \
-                        self.tones_to_numbers[self.text[match.start()]] + \
-                            self.text[shifting_index + 1:]
+                    if self.text[shifting_index] == "n" and self.text[shifting_index + 1] == "g":
+                        self.text = self.text[:shifting_index + 2] + \
+                            self.tones_to_numbers[self.text[match.start()]] + \
+                                self.text[shifting_index + 2:]
+                    else:
+                        self.text = self.text[:shifting_index + 1] + \
+                            self.tones_to_numbers[self.text[match.start()]] + \
+                                self.text[shifting_index + 1:]
                 elif self.text[shifting_index] in self.punctuation_mark\
                     or self.text[shifting_index] in self.syllab_beginning:
                     self.text = self.text[:shifting_index] + \
@@ -70,8 +76,8 @@ class initialize_transformer():
 
 
 
-test = initialize_transformer("""Xǔduō zài zhōngguó yìnshuā de shūjí shǐyòng hùnhé zìtǐ, 
-                                yuán yīn hé shēngdiào biāojì yǐ yǔ zhōuwéi wénběn bùtóng de zìtǐ chéngxiàn, 
-                                wǎngwǎng shǐ cǐ lèi pīnyīn wénběn zài yìnshuā shàng xiǎndé bènzhuō.""")
-new_text = test.to_numbers()
-print(new_text)
+#test = initialize_transformer("""Xǔduō zài zhōngguó yìnshuā de shūjí shǐyòng hùnhé zìtǐ, 
+                                #yuán yīn hé shēngdiào biāojì yǐ yǔ zhōuwéi wénběn bùtóng de zìtǐ chéngxiàn, 
+                                #wǎngwǎng shǐ cǐ lèi pīnyīn wénběn zài yìnshuā shàng xiǎndé bènzhuō.""")
+#new_text = test.to_numbers()
+#print(new_text)
