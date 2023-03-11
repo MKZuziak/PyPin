@@ -27,6 +27,45 @@ class TestTransformer(unittest.TestCase):
             print("TEST NO. 2 FAILED")
             print(f"Original version: {correct_transformation}\n")
             print(f"Received version: {transformed_string}")
+        
+        orig_string = r"Shǐyòng bǎidù qián bì dú. Bāngzhù zhōngxīn. Qǐyè tuīguǎng. Jīng gōng wǎng ān bèi 11000002000001 hào. Jīng ICP zhèng 030173 hào. Xìnxī wǎngluò chuánbò shìtīng jiémù xǔkě zhèng 0110516. Hùliánwǎng zōngjiào xìnxī fúwù xǔkě zhèng biānhào: Jīng (2022)0000043. Yàopǐn yīliáo qìxiè wǎngluò xìnxī fúwù bèi'àn (jīng) wǎng yàoxiè xìnxī bèi zì (2021) dì 00159 hào."
+        correct_transformation = r"Shi3yong4 bai3du4 qian2 bi4 du2. Bang1zhu4 zhong1xin1. Qi3ye4 tui1guang3. Jing1 gong1 wang3 an1 bei4 11000002000001 hao4. Jing1 ICP zheng4 030173 hao4. Xin4xi1 wang3luo4 chuan2bo4 shi4ting1 jie2mu4 xu3ke3 zheng4 0110516. Hu4lian2wang3 zong1jiao4 xin4xi1 fu2wu4 xu3ke3 zheng4 bian1hao4: Jing1 (2022)0000043. Yao4pin3 yi1liao2 qi4xie4 wang3luo4 xin4xi1 fu2wu4 bei4'an4 (jing1) wang3 yao4xie4 xin4xi1 bei4 zi4 (2021) di4 00159 hao4"
+        transformer_object = string_transformer()
+        transformed_string = transformer_object.to_numbers(orig_string)
+        try:
+            self.assertEqual(correct_transformation, transformed_string)
+            print("Text no. 4 passed.")
+        except:
+            print("TEST NO. 4 FAILED")
+            print(f"Original version: {correct_transformation}\n")
+            print(f"Received version: {transformed_string}")
+    
+    def test_totones_method(self):
+        orig_string = r"Xu3duo1 zai4 zhong1guo2 yin4shua1 de shu1ji2 shi3yong4 hun4he2 zi4ti3, yuan2 yin1 he2 sheng1diao4 biao1ji4 yi3 yu3 zhou1wei2 wen2ben3 bu4tong2 de zi4ti3 cheng2xian4, wang3wang3 shi3 ci3 lei4 pin1yin1 wen2ben3 zai4 yin4shua1 shang4 xian3de2 ben4zhuo1."
+        correct_transformation = r"Xǔduō zài zhōngguó yìnshuā de shūjí shǐyòng hùnhé zìtǐ, yuán yīn hé shēngdiào biāojì yǐ yǔ zhōuwéi wénběn bùtóng de zìtǐ chéngxiàn, wǎngwǎng shǐ cǐ lèi pīnyīn wénběn zài yìnshuā shàng xiǎndé bènzhuō."
+        transformer_object = string_transformer()
+        transformed_string = transformer_object.to_marks(orig_string)
+        try:
+            self.assertEqual(correct_transformation, transformed_string)
+            print("Text no. 5 passed.")
+        except:
+            print("TEST NO. 5 FAILED")
+            print(f"Original version: {correct_transformation}\n")
+            print(f"Received version: {transformed_string}")
+
+        orig_string = r"Shi3yong4 bai3du4 qian2 bi4 du2. Bang1zhu4 zhong1xin1. Qi3ye4 tui1guang3. Jing1 gong1 wang3 an1 bei4 11000002000001 hao4. Jing1 ICP zheng4 030173 hao4. Xin4xi1 wang3luo4 chuan2bo4 shi4ting1 jie2mu4 xu3ke3 zheng4 0110516. Hu4lian2wang3 zong1jiao4 xin4xi1 fu2wu4 xu3ke3 zheng4 bian1hao4: Jing1 (2022)0000043. Yao4pin3 yi1liao2 qi4xie4 wang3luo4 xin4xi1 fu2wu4 bei4'an4 (jing1) wang3 yao4xie4 xin4xi1 bei4 zi4 (2021) di4 00159 hao4"
+        correct_transformation = r"Shǐyòng bǎidù qián bì dú. Bāngzhù zhōngxīn. Qǐyè tuīguǎng. Jīng gōng wǎng ān bèi 11000002000001 hào. Jīng ICP zhèng 030173 hào. Xìnxī wǎngluò chuánbò shìtīng jiémù xǔkě zhèng 0110516. Hùliánwǎng zōngjiào xìnxī fúwù xǔkě zhèng biānhào: Jīng (2022)0000043. Yàopǐn yīliáo qìxiè wǎngluò xìnxī fúwù bèi'àn (jīng) wǎng yàoxiè xìnxī bèi zì (2021) dì 00159 hào"
+        transformer_object = string_transformer()
+        transformed_string = transformer_object.to_marks(orig_string)
+        try:
+            self.assertEqual(correct_transformation, transformed_string)
+            print("Text no. 6 passed.")
+        except:
+            print("TEST NO. 6 FAILED")
+            print(f"Original version: {correct_transformation}\n")
+            print(f"Received version: {transformed_string}")
+
+
 
 
 if __name__ == '__main__':
